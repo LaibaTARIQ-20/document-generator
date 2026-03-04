@@ -1,7 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Member } from "@/data/dummyData"
-import Image from "next/image"
 
 interface GroupMembersProps {
   members: Member[]
@@ -10,85 +8,95 @@ interface GroupMembersProps {
 export default function GroupMembers({ members }: GroupMembersProps) {
   return (
     <div style={{ marginBottom: "12px" }}>
-
-      {/* Section Heading */}
       <p style={{
         fontWeight: "bold",
-        fontSize: "13px",
-        marginBottom: "6px",
-        fontFamily: "Times New Roman, serif"
+        fontSize: "12px",
+        margin: "0 0 6px 0",
+        fontFamily: "Times New Roman, serif",
+        textAlign: "left"
       }}>
         Group Members
       </p>
 
-      {/* Table — always 4 fixed cells */}
       <table style={{
         width: "100%",
         borderCollapse: "collapse",
-        tableLayout: "fixed"
+        tableLayout: "fixed",
+        border: "1px solid #000"
       }}>
         <tbody>
 
-          {/* Row 1 — Photos */}
+          {/* Photo Row */}
           <tr>
             {members.map((member) => (
               <td
-                key={member.id}
+                key={`photo-${member.id}`}
                 style={{
                   width: "25%",
-                  height: "120px",
+                  height: "130px",
                   border: "1px solid #000",
                   textAlign: "center",
                   verticalAlign: "middle",
-                  padding: "4px"
+                  padding: "10px 4px"
                 }}
               >
-                {/* Only show content if active, cell stays either way */}
                 {member.active && (
-                  <div style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: "100%"
-                  }}>
-                    <img
-                      src={member.photo}
-                      alt={member.name}
-                      style={{
-                        width: "80px",
-                        height: "100px",
-                        objectFit: "cover"
-                      }}
-                      onError={(e) => {
-                        // If photo not found, show grey placeholder
-                        (e.target as HTMLImageElement).src =
-                          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='100'%3E%3Crect width='80' height='100' fill='%23cccccc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23666' font-size='10'%3EPhoto%3C/text%3E%3C/svg%3E"
-                      }}
-                    />
-                  </div>
+                  <img
+                    src={member.photo}
+                    alt={member.name}
+                    style={{
+                      width: "80px",
+                      height: "100px",
+                      objectFit: "cover",
+                      display: "block",
+                      margin: "0 auto"
+                    }}
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src =
+                        `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='65' height='85'%3E%3Crect width='65' height='85' fill='%23e5e7eb'/%3E%3Ccircle cx='32' cy='28' r='16' fill='%239ca3af'/%3E%3Cellipse cx='32' cy='70' rx='22' ry='18' fill='%239ca3af'/%3E%3C/svg%3E`
+                    }}
+                  />
                 )}
               </td>
             ))}
           </tr>
 
-          {/* Row 2 — Names */}
+          {/* Name Row — inner table for guaranteed centering in html2canvas */}
           <tr>
             {members.map((member) => (
               <td
-                key={member.id}
+                key={`name-${member.id}`}
                 style={{
                   width: "25%",
-                  height: "24px",
                   border: "1px solid #000",
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                  fontSize: "11px",
-                  fontFamily: "Times New Roman, serif",
-                  padding: "2px"
+                  padding: "0",
+                  margin: "0"
                 }}
               >
-                {/* Only show name if active, cell stays either way */}
-                {member.active && member.name}
+                <table style={{
+                  width: "100%",
+                  height: "36px",
+                  borderCollapse: "collapse",
+                  tableLayout: "fixed",
+                  border: "none"
+                }}>
+                  <tbody>
+                    <tr style={{ height: "36px" }}>
+                      <td style={{
+                        height: "36px",
+                        textAlign: "center",
+                        verticalAlign: "middle",
+                        fontFamily: "Times New Roman, serif",
+                        fontSize: "10px",
+                        color: "#000000",
+                        padding: "0",
+                        border: "none"
+                      }}>
+                        {member.active ? member.name : ""}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </td>
             ))}
           </tr>

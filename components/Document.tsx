@@ -14,9 +14,8 @@ const Document = forwardRef<HTMLDivElement>((_, ref) => {
       id="document"
       style={{
         width: "794px",
-        minHeight: "1123px",
         backgroundColor: "#ffffff",
-        padding: "40px 50px",
+        padding: "30px 40px 40px 40px",
         margin: "0 auto",
         boxSizing: "border-box",
         fontFamily: "Times New Roman, serif",
@@ -25,14 +24,14 @@ const Document = forwardRef<HTMLDivElement>((_, ref) => {
       }}
     >
 
-      {/* Title + SDGs */}
-      <div style={{ marginBottom: "16px" }}>
+      {/* ── TITLE + SDGs ── */}
+      <div style={{ marginBottom: "10px" }}>
         <p style={{
           fontSize: "16px",
           fontWeight: "bold",
           fontFamily: "Times New Roman, serif",
           textAlign: "center",
-          margin: "0 0 6px 0"
+          margin: "0 0 4px 0"
         }}>
           {projectData.title}
         </p>
@@ -40,10 +39,10 @@ const Document = forwardRef<HTMLDivElement>((_, ref) => {
           <p
             key={index}
             style={{
-              fontSize: "13px",
-                        textAlign: "center",
+              fontSize: "12px",
+              textAlign: "center",
               fontFamily: "Times New Roman, serif",
-              margin: "0 0 2px 0"
+              margin: "0"
             }}
           >
             {sdg}
@@ -51,26 +50,33 @@ const Document = forwardRef<HTMLDivElement>((_, ref) => {
         ))}
       </div>
 
-      {/* Divider Line */}
+      {/* ── DIVIDER ── */}
       <hr style={{
         border: "none",
         borderTop: "1px solid #000",
-        marginBottom: "16px"
+        margin: "0 0 14px 0"
       }} />
 
-      {/* Group Members */}
-      <GroupMembers members={projectData.groupMembers} />
+      {/* ── GROUP MEMBERS ── */}
+      {/* marginBottom on GroupMembers div = space before supervisor table */}
+      <div style={{ marginBottom: "14px" }}>
+        <GroupMembers members={projectData.groupMembers} />
+      </div>
 
-      {/* Supervisors */}
-      <Supervisors
-        supervisor={projectData.supervisor}
-        coSupervisor={projectData.coSupervisor}
-      />
+      {/* ── SUPERVISORS ── */}
+      <div style={{ marginBottom: "14px" }}>
+        <Supervisors
+          supervisor={projectData.supervisor}
+          coSupervisor={projectData.coSupervisor}
+        />
+      </div>
 
-      {/* Abstract */}
-      <Abstract text={projectData.abstract} />
+      {/* ── ABSTRACT ── */}
+      <div style={{ marginBottom: "14px" }}>
+        <Abstract text={projectData.abstract} />
+      </div>
 
-      {/* Diagram */}
+      {/* ── DIAGRAM ── */}
       <Diagram imagePath={projectData.diagram} />
 
     </div>
@@ -78,5 +84,4 @@ const Document = forwardRef<HTMLDivElement>((_, ref) => {
 })
 
 Document.displayName = "Document"
-
 export default Document

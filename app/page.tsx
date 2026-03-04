@@ -13,16 +13,16 @@ export default function Home() {
   // Handle PDF Download
   const handleDownloadPDF = async () => {
     setPdfLoading(true)
-    await downloadPDF("document")
+    await downloadPDF()
     setPdfLoading(false)
   }
 
   // Handle Word Download
-  const handleDownloadWord = async () => {
-    setWordLoading(true)
-    await downloadWord("document")
-    setWordLoading(false)
-  }
+ const handleDownloadWord = async () => {
+  setWordLoading(true)
+  await downloadWord()
+  setWordLoading(false)
+}
 
   return (
     <main style={{

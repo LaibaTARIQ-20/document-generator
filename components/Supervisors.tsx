@@ -6,206 +6,221 @@ interface SupervisorsProps {
   coSupervisor: Supervisor
 }
 
-export default function Supervisors({ supervisor, coSupervisor }: SupervisorsProps) {
+export default function Supervisors({
+  supervisor,
+  coSupervisor
+}: SupervisorsProps) {
   return (
-    <div style={{ marginBottom: "12px" }}>
+    <table style={{
+      width: "100%",
+      borderCollapse: "collapse",
+      tableLayout: "fixed",
+      marginBottom: "8px",
+      border: "1px solid #000"
+    }}>
+      <tbody>
+        <tr>
 
-      {/* Table — always 2 fixed cells */}
-      <table style={{
-        width: "100%",
-        borderCollapse: "collapse",
-        tableLayout: "fixed"
-      }}>
-        <tbody>
-          <tr>
-
-            {/* LEFT CELL — Project Supervisor */}
-            <td style={{
-              width: "50%",
-              border: "1px solid #000",
-              verticalAlign: "top",
-              padding: "6px"
+          {/* LEFT — Supervisor */}
+          <td style={{
+            width: "50%",
+            border: "1px solid #000",
+            verticalAlign: "top",
+            padding: "0"
+          }}>
+            {/* Heading row */}
+            <div style={{
+              borderBottom: "1px solid #000",
+              padding: "4px 6px",
+              fontWeight: "bold",
+              fontSize: "11px",
+              fontFamily: "Times New Roman, serif"
             }}>
-              {/* Heading always shows */}
-              <p style={{
-                fontWeight: "bold",
-                fontSize: "12px",
-                marginBottom: "6px",
-                fontFamily: "Times New Roman, serif"
-              }}>
-                Project Supervisor
-              </p>
+              Project Supervisor
+            </div>
 
-              {/* Content only shows if active */}
-              {supervisor.active && (
-                <table style={{
-                  width: "100%",
-                  borderCollapse: "collapse"
-                }}>
-                  <tbody>
-                    <tr>
-
-                      {/* Supervisor Text Info */}
-                      <td style={{
-                        verticalAlign: "top",
-                        paddingRight: "6px",
-                        width: "65%"
-                      }}>
+            {/* Content: text | photo */}
+            <table style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              tableLayout: "fixed",
+              margin: "0"
+            }}>
+              <tbody>
+                <tr>
+                  {/* Text column */}
+                  <td style={{
+                    width: "65%",
+                    verticalAlign: "top",
+                    padding: "6px",
+                    borderRight: "1px solid #000"
+                  }}>
+                    {supervisor.active && (
+                      <>
                         <p style={{
                           fontWeight: "bold",
-                          fontSize: "11px",
-                          fontFamily: "Times New Roman, serif",
-                          margin: "0 0 3px 0"
+                          fontSize: "10px",
+                          margin: "0 0 3px 0",
+                          fontFamily: "Times New Roman, serif"
                         }}>
                           {supervisor.name}
                         </p>
                         <p style={{
-                          fontSize: "10px",
-                          fontFamily: "Times New Roman, serif",
-                          margin: "0 0 2px 0"
+                          fontSize: "9px",
+                          margin: "0 0 3px 0",
+                          fontFamily: "Times New Roman, serif"
                         }}>
                           {supervisor.degree} ({supervisor.university})
                         </p>
                         <p style={{
-                          fontSize: "10px",
-                          fontFamily: "Times New Roman, serif",
-                          margin: "0 0 2px 0"
+                          fontSize: "9px",
+                          margin: "0 0 3px 0",
+                          fontFamily: "Times New Roman, serif"
                         }}>
-                          <span style={{ fontWeight: "bold" }}>Discipline: </span>
-                          {supervisor.discipline}
+                          <strong>Discipline:</strong> {supervisor.discipline}
                         </p>
                         <p style={{
-                          fontSize: "10px",
-                          fontFamily: "Times New Roman, serif",
-                          margin: "0"
+                          fontSize: "9px",
+                          margin: "0",
+                          fontFamily: "Times New Roman, serif"
                         }}>
-                          <span style={{ fontWeight: "bold" }}>Specialization: </span>
-                          {supervisor.specialization}
+                          <strong>Specialization:</strong> {supervisor.specialization}
                         </p>
-                      </td>
+                      </>
+                    )}
+                  </td>
 
-                      {/* Supervisor Photo */}
-                      <td style={{
-                        verticalAlign: "top",
-                        width: "35%",
-                        textAlign: "center"
-                      }}>
-                        <img
-                          src={supervisor.photo}
-                          alt={supervisor.name}
-                          style={{
-                            width: "70px",
-                            height: "80px",
-                            objectFit: "cover"
-                          }}
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src =
-                              "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='80'%3E%3Crect width='70' height='80' fill='%23cccccc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23666' font-size='10'%3EPhoto%3C/text%3E%3C/svg%3E"
-                          }}
-                        />
-                      </td>
+                  {/* Photo column */}
+                  <td style={{
+                    width: "35%",
+                    verticalAlign: "middle",
+                    textAlign: "center",
+                    padding: "6px"
+                  }}>
+                    {supervisor.active && (
+                      <img
+                        src={supervisor.photo}
+                        alt={supervisor.name}
+                        style={{
+                          width: "70px",
+                          height: "80px",
+                          objectFit: "cover",
+                          display: "block",
+                          margin: "0 auto"
+                        }}
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src =
+                            `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='80'%3E%3Crect width='70' height='80' fill='%23e5e7eb'/%3E%3Ccircle cx='35' cy='27' r='17' fill='%239ca3af'/%3E%3Cellipse cx='35' cy='65' rx='24' ry='18' fill='%239ca3af'/%3E%3C/svg%3E`
+                        }}
+                      />
+                    )}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
 
-                    </tr>
-                  </tbody>
-                </table>
-              )}
-            </td>
-
-            {/* RIGHT CELL — Project Co-Supervisor */}
-            <td style={{
-              width: "50%",
-              border: "1px solid #000",
-              verticalAlign: "top",
-              padding: "6px"
+          {/* RIGHT — Co-Supervisor */}
+          <td style={{
+            width: "50%",
+            border: "1px solid #000",
+            verticalAlign: "top",
+            padding: "0"
+          }}>
+            {/* Heading row */}
+            <div style={{
+              borderBottom: "1px solid #000",
+              padding: "4px 6px",
+              fontWeight: "bold",
+              fontSize: "11px",
+              fontFamily: "Times New Roman, serif"
             }}>
-              {/* Heading always shows */}
-              <p style={{
-                fontWeight: "bold",
-                fontSize: "12px",
-                marginBottom: "6px",
-                fontFamily: "Times New Roman, serif"
-              }}>
-                Project Co-Supervisor
-              </p>
+              Project Co-Supervisor
+            </div>
 
-              {/* Content only shows if active */}
-              {coSupervisor.active && (
-                <table style={{
-                  width: "100%",
-                  borderCollapse: "collapse"
-                }}>
-                  <tbody>
-                    <tr>
-
-                      {/* Co-Supervisor Text Info */}
-                      <td style={{
-                        verticalAlign: "top",
-                        paddingRight: "6px",
-                        width: "65%"
-                      }}>
+            {/* Content: text | photo */}
+            <table style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              tableLayout: "fixed",
+              margin: "0"
+            }}>
+              <tbody>
+                <tr>
+                  {/* Text column */}
+                  <td style={{
+                    width: "65%",
+                    verticalAlign: "top",
+                    padding: "6px",
+                    borderRight: "1px solid #000"
+                  }}>
+                    {coSupervisor.active && (
+                      <>
                         <p style={{
                           fontWeight: "bold",
-                          fontSize: "11px",
-                          fontFamily: "Times New Roman, serif",
-                          margin: "0 0 3px 0"
+                          fontSize: "10px",
+                          margin: "0 0 3px 0",
+                          fontFamily: "Times New Roman, serif"
                         }}>
                           {coSupervisor.name}
                         </p>
                         <p style={{
-                          fontSize: "10px",
-                          fontFamily: "Times New Roman, serif",
-                          margin: "0 0 2px 0"
+                          fontSize: "9px",
+                          margin: "0 0 3px 0",
+                          fontFamily: "Times New Roman, serif"
                         }}>
                           {coSupervisor.degree} ({coSupervisor.university})
                         </p>
                         <p style={{
-                          fontSize: "10px",
-                          fontFamily: "Times New Roman, serif",
-                          margin: "0 0 2px 0"
+                          fontSize: "9px",
+                          margin: "0 0 3px 0",
+                          fontFamily: "Times New Roman, serif"
                         }}>
-                          <span style={{ fontWeight: "bold" }}>Discipline: </span>
-                          {coSupervisor.discipline}
+                          <strong>Discipline:</strong> {coSupervisor.discipline}
                         </p>
                         <p style={{
-                          fontSize: "10px",
-                          fontFamily: "Times New Roman, serif",
-                          margin: "0"
+                          fontSize: "9px",
+                          margin: "0",
+                          fontFamily: "Times New Roman, serif"
                         }}>
-                          <span style={{ fontWeight: "bold" }}>Specialization: </span>
-                          {coSupervisor.specialization}
+                          <strong>Specialization:</strong> {coSupervisor.specialization}
                         </p>
-                      </td>
+                      </>
+                    )}
+                  </td>
 
-                      {/* Co-Supervisor Photo */}
-                      <td style={{
-                        verticalAlign: "top",
-                        width: "35%",
-                        textAlign: "center"
-                      }}>
-                        <img
-                          src={coSupervisor.photo}
-                          alt={coSupervisor.name}
-                          style={{
-                            width: "70px",
-                            height: "80px",
-                            objectFit: "cover"
-                          }}
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src =
-                              "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='80'%3E%3Crect width='70' height='80' fill='%23cccccc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23666' font-size='10'%3EPhoto%3C/text%3E%3C/svg%3E"
-                          }}
-                        />
-                      </td>
+                  {/* Photo column */}
+                  <td style={{
+                    width: "35%",
+                    verticalAlign: "middle",
+                    textAlign: "center",
+                    padding: "6px"
+                  }}>
+                    {coSupervisor.active && (
+                      <img
+                        src={coSupervisor.photo}
+                        alt={coSupervisor.name}
+                        style={{
+                          width: "70px",
+                          height: "80px",
+                          objectFit: "cover",
+                          display: "block",
+                          margin: "0 auto"
+                        }}
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src =
+                            `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='80'%3E%3Crect width='70' height='80' fill='%23e5e7eb'/%3E%3Ccircle cx='35' cy='27' r='17' fill='%239ca3af'/%3E%3Cellipse cx='35' cy='65' rx='24' ry='18' fill='%239ca3af'/%3E%3C/svg%3E`
+                        }}
+                      />
+                    )}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
 
-                    </tr>
-                  </tbody>
-                </table>
-              )}
-            </td>
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        </tr>
+      </tbody>
+    </table>
   )
 }

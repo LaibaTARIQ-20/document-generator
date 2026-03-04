@@ -37,25 +37,26 @@ const projectData: ProjectData = {
     {
       id: 1,
       name: "Shaiq e Mustafa",
-      photo: "/photos/member.jpg",
-      active: true
+      photo: "/photos/image.png",
+      active:true
     },
-    {
+     {
       id: 2,
-      name: "Mutti ur Rehamn",
-      photo: "/photos/member.jpg",
-      active: true
+      name: "Mutti ur Rehman",
+      photo: "/photos/image4.png",
+      active:true
     },
+ 
     {
       id: 3,
-      name: "Farhad Gul",
-      photo: "/photos/member.jpg",
+      name: "Farhad Farhad Farhad Farhad Gul",
+      photo: "/photos/image1.png",
       active: true
     },
     {
       id: 4,
       name: "Syed Own",
-      photo: "/photos/member.jpg",
+      photo: "/photos/image2.png",
       active: true
     },
   ],
@@ -66,7 +67,7 @@ const projectData: ProjectData = {
     university: "National University of Science and Technology",
     discipline: "Computer Engineering",
     specialization: "Medical Image / Signal Analysis",
-    photo: "/photos/supervisor.jpg",
+    photo: "/photos/image3.png",
     active: true
   },
 
@@ -76,7 +77,7 @@ const projectData: ProjectData = {
     university: "National University of Science and Technology",
     discipline: "Computer Engineering",
     specialization: "Digital System Design",
-    photo: "/photos/supervisor.jpg",
+    photo: "/photos/image5.png",
     active: true
   },
 
