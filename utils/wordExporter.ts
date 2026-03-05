@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { saveAs } from "file-saver"
 import {
   Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
