@@ -296,7 +296,3 @@ http://localhost:3000
 **To add photos:** Place image files in `public/photos/` folder with names matching `dummyData.ts`
 
 ---
-
-## 11. Summary for Demo
-
-> "This project is a Next.js document generator that dynamically renders an academic project poster from a data file. The web preview uses React components with inline styles. When the user clicks Download PDF, jsPDF draws every element — text, tables, images — at exact coordinates. When the user clicks Download Word, the docx library builds a proper XML-based Word document with editable text, real tables, and embedded images. The key challenge was ensuring the exported files look identical to the web preview — which we solved by moving away from screenshot-based approaches to direct programmatic document generation."
